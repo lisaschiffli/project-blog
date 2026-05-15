@@ -2,7 +2,7 @@ import React from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { loadBlogPost } from '@/helpers/file-helpers';
 import { BLOG_TITLE } from '@/constants';
-import CodeSnippet from '@/components/CodeSnippet';
+import COMPONENT_MAP from '@/helpers/mdx-components';
 
 import BlogHero from '@/components/BlogHero';
 
@@ -34,9 +34,7 @@ async function BlogPost({ params }) {
       <div className={styles.page}>
         <MDXRemote
           source={content}
-          components={{
-            pre: CodeSnippet,
-          }}
+          components={COMPONENT_MAP}
         />
       </div>
     </article>
