@@ -1,12 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "no-unused-vars": 1,
-    "object-curly-newline": [
-      "error",
-      {
-        "ObjectPattern": { "multiline": true, "minProperties": 2 }
-      }
-    ]
+    "no-unused-vars": 1
   }
 }
