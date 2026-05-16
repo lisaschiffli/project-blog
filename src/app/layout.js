@@ -2,6 +2,7 @@ import React from 'react';
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google';
 import clsx from 'clsx';
 import { MotionConfig } from 'motion/react';
+import { cookies } from 'next/headers';
 
 import { LIGHT_TOKENS, DARK_TOKENS, BLOG_TITLE } from '@/constants';
 
@@ -27,9 +28,9 @@ export const metadata = {
   description: 'A wonderful blog about JavaScript',
 };
 
-function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = 'light';
+async function RootLayout({ children }) {
+  const savedTheme = (await cookies()).get('color-theme');
+  const theme = savedTheme?.value || 'light';
 
   return (
     <MotionConfig reducedMotion='user'>
@@ -40,7 +41,7 @@ function RootLayout({ children }) {
         style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
       >
         <body>
-          <Header theme={theme} />
+          <Header initialTheme={theme} />
           <main>{children}</main>
           <Footer />
         </body>
